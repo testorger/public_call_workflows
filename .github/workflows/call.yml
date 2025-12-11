@@ -12,6 +12,8 @@ jobs:
           echo "ORG_SECRET: ${{ secrets.ORG_SECRET }}"
       - name: call composite
         uses: testorger/public_reusable_workflows/.github/actions/sample-composite@main
+        with:
+          parameter1: ${{ secrets.ORG_SECRET }}
         
   test_call:
     needs: job1
