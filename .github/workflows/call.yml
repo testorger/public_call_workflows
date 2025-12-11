@@ -10,7 +10,9 @@ jobs:
       - name: echo
         run: |
           echo "ORG_SECRET: ${{ secrets.ORG_SECRET }}"
-          
+      - name: call composite
+        uses: testorger/public_reusable_workflows/.github/actions/sample-composite@main
+        
   test_call:
     needs: job1
     uses: testorger/public_reusable_workflows/.github/workflows/common.yml@main
