@@ -1,0 +1,12 @@
+name: Test Call2 Workflow
+
+on:
+  workflow_dispatch:  # 手動実行可能
+
+jobs:
+  test_call2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: |
+          echo "test"
