@@ -17,6 +17,6 @@ jobs:
     permissions: 
       contents: read
     with:
-      env: 'abc'
+      env: ${{ secrets.TOKEN_TEST }}
     secrets:
       TOKEN: ${{ secrets.TOKEN_TEST }}
