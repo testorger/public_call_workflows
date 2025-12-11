@@ -1,0 +1,14 @@
+name: Test Call Workflow
+
+on:
+  workflow_dispatch:  # 手動実行可能
+
+jobs:
+  test_call:
+    uses: testorger/public_reusable_workflows/.github/workflows/common.yml@main
+    permissions: 
+      contents: read
+    with:
+      env: ${{ secrets.DEPLOY_TOKEN_TEST }}
+    secrets:
+      TOKEN: ${{ secrets.DEPLOY_TOKEN_TEST }}
