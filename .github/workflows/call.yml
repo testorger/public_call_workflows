@@ -24,4 +24,4 @@ jobs:
       env: 'abc'
     secrets:
       TOKEN: ${{ secrets.TOKEN_TEST }}
-      JSON: "test json desu."
+      JSON: '{"name":"test", "value":"value1"}'
