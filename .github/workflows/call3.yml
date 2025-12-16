@@ -17,5 +17,6 @@ jobs:
           parameter1: |
             [
               {"name": "TEST_NAME1", "value": "${{ secrets.ORG_SECRET }}"},
-              {"name": "TEST_NAME2", "value": "${{ env.TEST_ENV1 }}"}
+              {"name": "TEST_NAME2", "value": "${{ env.TEST_ENV1 }}"},
+              {"name": "TEST_NAME3", "value": "jdbc:postgresql://mypsql.com:5432/db?sslmode=require"}
             ]
