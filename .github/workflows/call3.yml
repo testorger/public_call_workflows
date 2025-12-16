@@ -4,6 +4,7 @@ on:
   workflow_dispatch:  # 手動実行可能
 env:
   TEST_ENV1: 'test env1 !!'
+  DB_CONNECTION: 'jdbc:postgresql://mypsql.com:5432/db?sslmode=require'
 jobs:
   job1:
     runs-on: ubuntu-latest
@@ -18,5 +19,5 @@ jobs:
             [
               {"name": "TEST_NAME1", "value": "${{ secrets.ORG_SECRET }}"},
               {"name": "TEST_NAME2", "value": "${{ env.TEST_ENV1 }}"},
-              {"name": "TEST_NAME3", "value": "jdbc:postgresql://mypsql.com:5432/db?sslmode=require"}
+              {"name": "TEST_NAME3", "value": "$DB_CONNECTION"}
             ]
