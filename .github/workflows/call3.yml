@@ -19,5 +19,5 @@ jobs:
             [
               {"name": "TEST_NAME1", "value": "${{ secrets.ORG_SECRET }}"},
               {"name": "TEST_NAME2", "value": "${{ env.TEST_ENV1 }}"},
-              {"name": "TEST_NAME3", "value": "$DB_CONNECTION"}
+              {"name": "TEST_NAME3", "value": "${{ env.DB_CONNECTION }}"}
             ]
