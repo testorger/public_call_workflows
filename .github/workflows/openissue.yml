@@ -1,0 +1,43 @@
+name: Issue Open Workflow
+
+on:
+  workflow_dispatch:  # 手動実行可能
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  open_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: calculate time
+        id: calculate_time
+        run: |
+          CLOSE_TIME=$(date -u -d "+5 minutes" '+%Y-%m-%d %H:%M:%S')
+          TIMESTAMP=$(date -u -d "+5 minutes" '+%s')
+          echo "close_time=$CLOSE_TIME" >> $GITHUB_OUTPUT
+          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+          
+      - name: open_issue
+        run: |
+          echo "open issue start."
+
+          gh issue create \
+            --title "Test-Issue-${{ steps.calculate_time.outputs.timestamp }}" \
+            --body "## This is Test Issue
+            | Parameter | Value |
+            |-----------|-------|
+            | **Close At** | \`${{ steps.calculate_time.outputs.close_time }}\` |
+            ---
+            test end." \
+            --label "test-label" \
+            --assignee "${{ github.actor }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          
+   
