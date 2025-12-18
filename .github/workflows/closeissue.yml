@@ -1,10 +1,10 @@
 name: Issue Close Workflow
 
 on:
-  workflow_dispatch:  # 手動実行可能
   schedule:
     - cron: "*/5 * * * *"
-    
+  workflow_dispatch:  # 手動実行可能
+  
 permissions:
   issues: write
   contents: read
