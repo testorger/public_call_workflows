@@ -1,0 +1,52 @@
+name: Issue Close Workflow
+
+on:
+  workflow_dispatch:  # 手動実行可能
+  schedule:
+    - cron: "*/5 * * * *"
+    
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  open_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: close_issue
+        shell: bash
+        run: |
+          echo "close issue start."
+
+          while IFS= read -r issue; do
+            issue_number=$(echo "$issue" | jq -r '.number')
+            issue_title=$(echo "$issue" | jq -r '.title')
+            issue_body=$(echo "$issue" | jq -r '.body')
+            echo "issue_number: $issue_number"
+            echo "issue_title: $issue_title"
+            echo "issue_body: $issue_body"
+            if [[ "$issue_title" =~ ^Test-Issue-([0-9]+)$ ]]; then
+              close_timestamp="${BASH_REMATCH[1]}"
+              echo "close_timestamp: $close_timestamp"
+            fi
+            
+            gh issue close "$issue_number" --comment "**Automatically Closed**"
+            
+          done < <(
+            gh issue list \
+              --repo "${{ github.repository }}" \
+              --label "test-label" \
+              --state open \
+              --json number,title,body,labels \
+              --jq '.[]'
+          )
+
+
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          
+   
