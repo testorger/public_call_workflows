@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # 手動実行可能
 
 env:
-  TEST_ENV: '【test】It''s test message!!\n\nescape test!\nand eof test!'
+  TEST_ENV: '【test】Its test message!!\n\nescape test!\nand eof test!'
   TEST_ENV2: '【test】Its test2 message!!\n\nescape test2!\nand eof test2!'
   
 jobs:
