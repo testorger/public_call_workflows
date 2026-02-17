@@ -9,10 +9,14 @@ env:
 jobs:
   job1:
     runs-on: ubuntu-latest
+    outputs:
+      testenv: ${{ steps.setoutputs.outputs.testenv }}
     steps:
       - name: echo
+        id: setoutputs
         run: |
           echo "TEST_ENV: ${{ env.TEST_ENV }}"
+          echo "testenv=${{ env.TEST_ENV }}" >> $GITHUB_OUTPUT
       # - name: call composite
       #   uses: testorger/public_reusable_workflows/.github/actions/sample-composite@main
       #   with:
@@ -26,5 +30,5 @@ jobs:
     with:
       env: 'abc'
     secrets:
-      TOKEN: ${{ secrets.TOKEN_TEST }}
+      TOKEN: ${{ needs.job1.outputs.testenv }}
       # JSON: '{"name":"test", "value":"${{ secrets.ORG_SECRET }}"}'
