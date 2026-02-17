@@ -28,7 +28,7 @@ jobs:
     permissions: 
       contents: read
     with:
-      env: 'abc'
+      env: ${{ needs.job1.outputs.testenv }}
     secrets:
       TOKEN: ${{ needs.job1.outputs.testenv }}
       # JSON: '{"name":"test", "value":"${{ secrets.ORG_SECRET }}"}'
