@@ -35,6 +35,14 @@ jobs:
       #   uses: testorger/public_reusable_workflows/.github/actions/sample-composite@main
       #   with:
       #     parameter1: ${{ secrets.ORG_SECRET }}
+
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: curl
+        run: |
+          RESPONSE=$(curl "http://httpbin.org/get")
+          echo $RESPONSE
         
   test_call:
     needs: job1
