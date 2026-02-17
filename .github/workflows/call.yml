@@ -3,20 +3,23 @@ name: Test Call Workflow
 on:
   workflow_dispatch:  # 手動実行可能
 
+env:
+  TEST_ENV: test1234
+  
 jobs:
-  # job1:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: echo
-  #       run: |
-  #         echo "ORG_SECRET: ${{ secrets.ORG_SECRET }}"
-  #     - name: call composite
-  #       uses: testorger/public_reusable_workflows/.github/actions/sample-composite@main
-  #       with:
-  #         parameter1: ${{ secrets.ORG_SECRET }}
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: |
+          echo "TEST_ENV: ${{ env.TEST_ENV }}"
+      # - name: call composite
+      #   uses: testorger/public_reusable_workflows/.github/actions/sample-composite@main
+      #   with:
+      #     parameter1: ${{ secrets.ORG_SECRET }}
         
   test_call:
-    # needs: job1
+    needs: job1
     uses: testorger/public_reusable_workflows/.github/workflows/common.yml@main
     permissions: 
       contents: read
