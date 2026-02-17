@@ -16,7 +16,9 @@ jobs:
         id: setoutputs
         run: |
           echo "TEST_ENV: ${{ env.TEST_ENV }}"
-          echo "testenv=${{ env.TEST_ENV }}" >> $GITHUB_OUTPUT
+          escape() { printf "%s" "$1" | sed "s/'/'\"'\"'/g"; }
+          ESCAPED=$(escape "$TEST_ENV")
+          echo "testenv=$ESCAPED" >> $GITHUB_OUTPUT
       # - name: call composite
       #   uses: testorger/public_reusable_workflows/.github/actions/sample-composite@main
       #   with:
