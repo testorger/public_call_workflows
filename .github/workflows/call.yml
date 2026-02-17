@@ -55,6 +55,6 @@ jobs:
       TOKEN: |
         {
           "name": "test",
-          "value": "${{ env.TEST_ENV }}"
+          "value": "${{ needs.job1.outputs.testenv }}"
         }
       # JSON: '{"name":"test", "value":"${{ secrets.ORG_SECRET }}"}'
