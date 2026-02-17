@@ -5,12 +5,14 @@ on:
 
 env:
   TEST_ENV: '【test】It''s test message!!\n\nescape test!\nand eof test!'
+  TEST_ENV2: '【test】Its test2 message!!\n\nescape test2!\nand eof test2!'
   
 jobs:
   job1:
     runs-on: ubuntu-latest
     outputs:
       testenv: ${{ steps.setoutputs.outputs.testenv }}
+      testenv2: ${{ steps.setoutputs.outputs.testenv2 }}
     steps:
       - name: echo
         id: setoutputs
@@ -18,8 +20,17 @@ jobs:
           echo "TEST_ENV: $TEST_ENV"
           escape() { printf "%s" "$1" | sed "s/'/'\"'\"'/g"; }
           ESCAPED=$(escape "$TEST_ENV")
+          ESCAPED2=$(escape "$TEST_ENV2")
           echo "ESCAPED: $ESCAPED"
-          echo "testenv=$ESCAPED" >> $GITHUB_OUTPUT
+          echo "ESCAPED2: $ESCAPED2"
+          {
+            echo "testenv<<EOF"
+            echo "$ESCAPED"
+            echo "EOF"
+            echo "testenv2<<EOF"
+            echo "$ESCAPED2"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
       # - name: call composite
       #   uses: testorger/public_reusable_workflows/.github/actions/sample-composite@main
       #   with:
