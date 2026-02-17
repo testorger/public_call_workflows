@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # 手動実行可能
 
 env:
-  TEST_ENV: 【test】It's test message!!\n\nescape test!\nand eof test!
+  TEST_ENV: '【test】It''s test message!!\n\nescape test!\nand eof test!'
   
 jobs:
   job1:
@@ -15,9 +15,10 @@ jobs:
       - name: echo
         id: setoutputs
         run: |
-          echo "TEST_ENV: ${{ env.TEST_ENV }}"
+          echo "TEST_ENV: $TEST_ENV"
           escape() { printf "%s" "$1" | sed "s/'/'\"'\"'/g"; }
           ESCAPED=$(escape "$TEST_ENV")
+          echo "ESCAPED: $ESCAPED"
           echo "testenv=$ESCAPED" >> $GITHUB_OUTPUT
       # - name: call composite
       #   uses: testorger/public_reusable_workflows/.github/actions/sample-composite@main
