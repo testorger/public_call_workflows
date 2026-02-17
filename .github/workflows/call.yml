@@ -44,5 +44,5 @@ jobs:
     with:
       env: ${{ needs.job1.outputs.testenv }}
     secrets:
-      TOKEN: ${{ needs.job1.outputs.testenv2 }}
+      TOKEN: $TEST_ENV
       # JSON: '{"name":"test", "value":"${{ secrets.ORG_SECRET }}"}'
