@@ -47,6 +47,6 @@ jobs:
       TOKEN: |
         {
           "name": "test",
-          "value": "$TEST_ENV"
+          "value": "${{ env.TEST_ENV }}"
         }
       # JSON: '{"name":"test", "value":"${{ secrets.ORG_SECRET }}"}'
