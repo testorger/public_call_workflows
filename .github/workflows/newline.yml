@@ -33,6 +33,7 @@ jobs:
             ENV_VALUE=$(echo "$ENV_VARS" | jq -r ".[$i].value")
 
             if [[ "$ENV_VALUE" == *$'\n'* ]]; then
+              ENV_VALUE=$(echo "$ENV_VALUE" | sed ':a;N;$!ba;s/\n/\\n/g')
               ENV_VALUE=$'$'"$ENV_VALUE"
               ENV_VALUE="\"$ENV_VALUE\""
             fi
