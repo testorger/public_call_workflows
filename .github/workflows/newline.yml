@@ -24,4 +24,11 @@ jobs:
           ENV_COUNT=$(echo "$ENV_VARS" | jq '. | length')
           echo "ENV_COUNT: $ENV_COUNT"
 
-          
+          for ((i=0; i<$ENV_COUNT; i++)); do
+            ENV_NAME=$(echo "$ENV_VARS" | jq -r ".[$i].name")
+            ENV_VALUE=$(echo "$ENV_VARS" | jq -r ".[$i].value")
+
+            ENV_VARS_ARG="$ENV_VARS_ARG $ENV_NAME=$ENV_VALUE"
+          done
+
+          echo "ENV_VARS_ARG: $ENV_VARS_ARG"
