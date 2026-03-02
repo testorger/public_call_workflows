@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # 手動実行可能
 
 env:
-  TEST_ENV: |
+  ENV_VARS: |
     [
       {
         "name": "ENV1",
@@ -18,4 +18,10 @@ jobs:
     steps:
       - name: echo
         run: |
-          echo "TEST_ENV: $TEST_ENV"
+          echo "ENV_VARS: $ENV_VARS"
+          ENV_VARS_ARG="--set-env-vars"
+
+          ENV_COUNT=$(echo "$ENV_VARS" | jq '. | length')
+          echo "ENV_COUNT: $ENV_COUNT"
+
+          
