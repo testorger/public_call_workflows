@@ -34,9 +34,9 @@ jobs:
 
             if [[ "$ENV_VALUE" == *$'\n'* ]]; then
               ENV_VALUE=$(cat <<'EOF'
-              $ENV_VALUE
-              EOF
-              )
+          '"$ENV_VALUE"'
+          EOF
+          )
               ENV_VALUE="\"$ENV_VALUE\""
             fi
 
