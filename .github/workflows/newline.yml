@@ -9,6 +9,10 @@ env:
       {
         "name": "ENV1",
         "value": "【test】Its test message!!\n\nescape test!\nand eof test!"
+      },
+      {
+        "name": "TZ",
+        "value": "Asia/Tokyo"
       }
     ]
   
