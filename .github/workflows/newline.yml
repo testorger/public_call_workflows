@@ -1,0 +1,16 @@
+name: newline Workflow
+
+on:
+  workflow_dispatch:  # 手動実行可能
+
+env:
+  TEST_ENV: '【test】Its test message!!\n\nescape test!\nand eof test!'
+  
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        id: setoutputs
+        run: |
+          echo "TEST_ENV: $TEST_ENV"
