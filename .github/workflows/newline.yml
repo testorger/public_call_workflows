@@ -35,7 +35,6 @@ jobs:
             if [[ "$ENV_VALUE" == *$'\n'* ]]; then
               ENV_VALUE=$(echo "$ENV_VALUE" | sed ':a;N;$!ba;s/\n/\\n/g')
               ENV_VALUE=$'$'"$ENV_VALUE"
-              ENV_VALUE="\"$ENV_VALUE\""
             fi
 
             ENV_VARS_ARG="$ENV_VARS_ARG $ENV_NAME=$ENV_VALUE"
