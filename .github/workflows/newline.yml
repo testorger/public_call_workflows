@@ -28,6 +28,10 @@ jobs:
             ENV_NAME=$(echo "$ENV_VARS" | jq -r ".[$i].name")
             ENV_VALUE=$(echo "$ENV_VARS" | jq -r ".[$i].value")
 
+            if [[ "$ENV_VALUE" == *$'\n'* ]]; then
+              echo "改行あり"
+            fi
+
             ENV_VARS_ARG="$ENV_VARS_ARG $ENV_NAME=$ENV_VALUE"
           done
 
