@@ -24,6 +24,8 @@ jobs:
         run: |
           echo "ENV_VARS: $ENV_VARS"
           ENV_VARS_ARG="--set-env-vars"
+          ENV_VARS_ARG2=()
+          ENV_VARS_ARG2+=(--set-env-vars)
 
           ENV_COUNT=$(echo "$ENV_VARS" | jq '. | length')
           echo "ENV_COUNT: $ENV_COUNT"
@@ -39,6 +41,9 @@ jobs:
             else
               ENV_VARS_ARG="$ENV_VARS_ARG $ENV_NAME=$ENV_VALUE"
             fi
+
+            ENV_VARS_ARG2+=("${ENV_NAME}=${ENV_VALUE}")
           done
 
           echo "ENV_VARS_ARG: $ENV_VARS_ARG"
+          echo "ENV_VARS_ARG2: ${ENV_VARS_ARG[@]}"
