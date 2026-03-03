@@ -8,7 +8,7 @@ env:
     [
       {
         "name": "ENV1",
-        "value": "【test】Its test message!!\n\nescape test!\nand eof test!"
+        "value": "【test】Its test message!!\n\n- escape test!\n- and eof test!"
       },
       {
         "name": "TZ",
