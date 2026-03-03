@@ -51,6 +51,7 @@ jobs:
       contents: read
     with:
       env: ${{ needs.job1.outputs.testenv }}
+      flg: true
     secrets:
       TOKEN: |
         {
