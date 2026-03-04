@@ -12,6 +12,7 @@ jobs:
       - name: echo
         run: |
           echo "ORG_SECRET: ${{ secrets.ORG_SECRET }}"
+          echo "TEST_ENV1: ${{ env.TEST_ENV1 }}"
       - name: call composite
         uses: testorger/public_reusable_workflows/.github/actions/sample-composite@main
         with:
