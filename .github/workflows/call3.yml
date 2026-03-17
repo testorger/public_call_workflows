@@ -3,7 +3,7 @@ name: Test Call3 Workflow
 on:
   workflow_dispatch:  # 手動実行可能
 env:
-  TEST_ENV1: 'test env1 !!'
+  TEST_ENV1: 'test env1 !!\n\n改行のテストです。'
   DB_CONNECTION: 'jdbc:postgresql://mypsql.com:5432/db?sslmode=require'
 jobs:
   job1:
